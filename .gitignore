@@ -5,3 +5,7 @@
 !.gitignore
 !.gitignore.global
 !.gitconfig
+
+!.zshrc
+!.zshconfig
+!.zshconfig/**/*

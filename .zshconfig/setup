@@ -1,0 +1,20 @@
+SETUP_DIR="${ZDOTDIR:-~}/.zshconfig/setup-scripts"
+
+# Source all scripts from $ZDOTDIR/.zshconfig/setup-scripts:
+for script in $SETUP_DIR/*; do
+  source $script
+done
+
+# If first command line argument is brew, source all scripts under SETUP_DIR/brew
+if [ "$1" = "brew" ]; then
+  for script in $SETUP_DIR/brew/*; do
+    source $script
+  done
+fi
+
+# If first command line argument is apt, source all scripts under SETUP_DIR/apt
+if [ "$1" = "apt" ]; then
+  for script in $SETUP_DIR/apt/*; do
+    source $script
+  done
+fi
