@@ -1,5 +1,9 @@
 # Dotfiles
 
+## Dependencies
+
+- [antidote](https://github.com/mattmc3/antidote): zsh plugin manager
+
 ## First-time setup
 
 Install dependencies on your shell:
