@@ -1,0 +1,19 @@
+[user]
+	name = Stelios Karabasakis
+	email = skarabasakis@gmail.com
+[core]
+	editor = nano
+	pager = less -FRSX
+	excludesfile = /Users/skarab/.gitignore.global
+[init]
+	defaultBranch = main
+[push]
+	default = current
+[pull]
+	default = current
+[diff]
+	context = 0
+[rebase]
+	autoSquash = true
+[alias]
+	undo = reset --soft HEAD^

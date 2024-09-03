@@ -1,0 +1,17 @@
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IntelliJ
+.idea/
+
+# Node
+npm-debug.log
+
+# Python
+__pycache__/
+
+# Ruby
+.irb_history
