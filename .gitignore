@@ -10,3 +10,5 @@
 !.zshconfig
 !.zshconfig/**/*
 !.zsh_plugins.txt
+
+!.env.template

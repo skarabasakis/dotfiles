@@ -1,3 +1,5 @@
-# Source all files recursively under ~/.zshconfig/.zshrc
+alias load-env='source ${ZDOTDIR:-~}/.zshconfig/load-env'
+alias load-config='source ${ZDOTDIR:-~}/.zshconfig/load-config'
 
-source ${ZDOTDIR:-~}/.zshconfig/load .zshrc
+load-env --existing
+load-config .zshrc

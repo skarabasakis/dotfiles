@@ -20,6 +20,7 @@ source ~/.zshconfig/setup brew
 ```bash
 source ~/.zshconfig/setup apt
 ```
+
 # Features
 
 ## Manage dependencies
@@ -30,3 +31,7 @@ Add dependencies to
 
 Rerun `setup` to install dependencies (TODO: Idempotent setup)
 
+## Manage environment variables
+
+1. Add environment variables and secrets to `.env.template`
+2. Regenerate .env by running `load-env`
