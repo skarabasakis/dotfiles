@@ -1,7 +1,17 @@
 #!/bin/zsh
 SETUP_DIR="${ZDOTDIR:-~}/.zshconfig/packages"
 
-for source in ${ZSHCONFIG_PACKAGE_SOURCES//,/ }
+
+
+# if arguments provided, use them as package sources. Assign arguments as a cooma-separated string
+[ $# -gt 0 ] && package_sources=("$@")
+
+[ -z $package_sources ] && case $(uname -s) in
+  Darwin) package_sources=("brew" "github") ;;
+  Linux) package_sources=("apt" "github") ;;
+esac
+
+for source in ${package_sources[@]};
 do
   if [ $source = "brew" ]; then
     for script in $SETUP_DIR/brew/*.sh; do

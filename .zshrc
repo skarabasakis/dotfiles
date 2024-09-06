@@ -1,5 +1,5 @@
-alias load-env='source ${ZDOTDIR:-~}/.zshconfig/load-env'
-alias load-config='source ${ZDOTDIR:-~}/.zshconfig/load-config'
+# Append .zshconfig/scripts to path
+export PATH=${ZDOTDIR:-~}/.zshconfig/scripts:$PATH
 
 load-env --existing
 load-config .zshrc

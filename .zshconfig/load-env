@@ -1,7 +1,0 @@
-if [[ "${1:-foo}" != "--existing" ]] || [[ ! -f ${ZDOTDIR:-~}/.env ]]; then
-  op inject -f -i ${ZDOTDIR:-~}/.env.template -o ${ZDOTDIR:-~}/.env
-fi
-
-setopt allexport
-source ${ZDOTDIR:-~}/.env
-unsetopt allexport
