@@ -1,9 +1,9 @@
 #!/bin/zsh
 SETUP_DIR="${ZDOTDIR:-~}/.zshconfig/packages"
 
+INSTALLATION_DIR="${ZDOTDIR:-~}/${ZSHCONFIG_PACKAGE_DIR:-.packages}"
+mkdir -p $INSTALLATION_DIR
 
-
-# if arguments provided, use them as package sources. Assign arguments as a cooma-separated string
 [ $# -gt 0 ] && package_sources=("$@")
 
 [ -z $package_sources ] && case $(uname -s) in
@@ -14,29 +14,38 @@ esac
 for source in ${package_sources[@]};
 do
   if [ $source = "brew" ]; then
-    for script in $SETUP_DIR/brew/*.sh; do
+    for script in $SETUP_DIR/brew/*.sh(N); do
       source $script
     done
 
     packages=($(cat $SETUP_DIR/brew/packages))
-    [ ${#packages[@]} -gt 0 ] &&  brew install ${packages[@]}
+    for package in ${packages[@]}; do
+      brew list $package > /dev/null 2>&1 || brew install $package
+    done
   fi
 
   if [ $source = "apt" ]; then
-    for script in $SETUP_DIR/apt/*.sh; do
+    for script in $SETUP_DIR/apt/*.sh(N); do
       source $script
     done
 
     packages=($(cat $SETUP_DIR/apt/packages))
-    [ ${#packages[@]} -gt 0 ] && sudo apt update && sudo apt install ${packages[@]}
+    packages_to_install=()
+    sudo apt update
+    for package in ${packages[@]}; do
+      dpkg -l $package > /dev/null 2>&1 || packages_to_install+=($package)
+    done
+    [ ${#packages_to_install[@]} -gt 0 ] && sudo apt install ${packages_to_install[@]}
   fi
 
   if [ $source = "github" ]; then
+    gh auth token > /dev/null 2>&1 || source ${ZDOTDIR:-~}/.zshconfig/scripts/load-env --existing
+
     packages=($(cat $SETUP_DIR/github/packages))
     for package in ${packages[@]}; do
-      package_name = $(echo $package | cut -d'/' -f2)
-      [ -d .packages/$package_name ] && gh repo clone $p ackage "${ZSHCONFIG_PACKAGE_DIR:-.packages}/$package_name"
+      package_name=$(echo $package | cut -d'/' -f2)
+      package_dir="$INSTALLATION_DIR/$package_name"
+      [[ -d $package_dir ]] || git clone --depth 1 git@github.com:$package.git $package_dir
     done
-    [ ${#packages[@]} -gt 0 ] && gh repo clone ${packages[@]}
   fi
 done

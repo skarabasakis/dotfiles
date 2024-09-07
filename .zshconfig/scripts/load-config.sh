@@ -1,4 +1,3 @@
-#!/bin/zsh
 config_dir="${ZDOTDIR:-~}/.zshconfig/$1"
 
 if [ ! -d $config_dir ]; then
