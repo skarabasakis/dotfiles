@@ -2,3 +2,6 @@ curl
 1password-cli
 autojump
 zsh-autosuggestions
+fonts-firacode
+kubectl
+kubectx

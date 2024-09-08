@@ -1,2 +1,4 @@
 zsh-users/zsh-history-substring-search
 zdharma-continuum/fast-syntax-highlighting
+LFabre/zsh-git-prompt-enhanced
+jonmosco/kube-ps1
