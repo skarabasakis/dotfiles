@@ -1,5 +1,5 @@
 # https://asdf-vm.com/guide/getting-started.html
-export ASDF_DIR="${ZDOTDIR:-~}/.packages/asdf"
+export ASDF_DIR=${ZDOTDIR:-~}/.packages/asdf
 
 source "$ASDF_DIR/asdf.sh"
 
