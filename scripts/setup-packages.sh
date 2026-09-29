@@ -1,9 +1,6 @@
 #!/bin/zsh
 SETUP_DIR="${DOTFILES_DIR:-$HOME/dotfiles}/packages"
 
-INSTALLATION_DIR="${DOTFILES_DIR:-$HOME/dotfiles}/${ZSHCONFIG_PACKAGE_DIR:-.packages}"
-mkdir -p $INSTALLATION_DIR
-
 [ $# -gt 0 ] && package_sources=("$@")
 
 [ -z $package_sources ] && case $(uname -s) in
