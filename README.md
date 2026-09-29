@@ -13,8 +13,8 @@ Personal dotfiles for zsh, and some scripts to manage them.
 git clone skarabasakis/dotfiles
 echo "DOTFILES_DIR=$(pwd)" >> ~/.zshenv
 source ~/.zshenv
-source $DOTFILES_DIR/scripts/link-dotfiles
-source $DOTFILES_DIR/scripts/setup-packages
+source $DOTFILES_DIR/scripts/link-dotfiles.sh
+source $DOTFILES_DIR/scripts/setup-packages.sh
 ```
 
 # Features
