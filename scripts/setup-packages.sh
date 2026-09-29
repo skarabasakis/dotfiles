@@ -1,14 +1,14 @@
 #!/bin/zsh
-SETUP_DIR="${ZDOTDIR:-~}/.zshconfig/packages"
+SETUP_DIR="${DOTFILES_DIR:-$HOME/dotfiles}/packages"
 
-INSTALLATION_DIR="${ZDOTDIR:-~}/${ZSHCONFIG_PACKAGE_DIR:-.packages}"
+INSTALLATION_DIR="${DOTFILES_DIR:-$HOME/dotfiles}/${ZSHCONFIG_PACKAGE_DIR:-.packages}"
 mkdir -p $INSTALLATION_DIR
 
 [ $# -gt 0 ] && package_sources=("$@")
 
 [ -z $package_sources ] && case $(uname -s) in
-  Darwin) package_sources=("brew" "github") ;;
-  Linux) package_sources=("apt" "github") ;;
+  Darwin) package_sources=("brew") ;;
+  Linux) package_sources=("apt") ;;
 esac
 
 for source in ${package_sources[@]};
@@ -22,6 +22,8 @@ do
     for package in ${packages[@]}; do
       brew list $package > /dev/null 2>&1 || brew install $package
     done
+
+    brew completions link
   fi
 
   if [ $source = "apt" ]; then
@@ -36,16 +38,5 @@ do
       dpkg -l $package > /dev/null 2>&1 || packages_to_install+=($package)
     done
     [ ${#packages_to_install[@]} -gt 0 ] && sudo apt install ${packages_to_install[@]}
-  fi
-
-  if [ $source = "github" ]; then
-    gh auth token > /dev/null 2>&1 || source ${ZDOTDIR:-~}/.zshconfig/scripts/load-env --existing
-
-    packages=($(cat $SETUP_DIR/github/packages))
-    for package in ${packages[@]}; do
-      package_name=$(echo $package | cut -d'/' -f2)
-      package_dir="$INSTALLATION_DIR/$package_name"
-      [[ -d $package_dir ]] || git clone --depth 1 git@github.com:$package.git $package_dir
-    done
   fi
 done

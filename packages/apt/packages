@@ -1,7 +1,8 @@
-curl
 1password-cli
 autojump
-zsh-autosuggestions
+curl
 fonts-firacode
+gh
 kubectl
 kubectx
+zsh-autosuggestions

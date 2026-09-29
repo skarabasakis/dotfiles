@@ -1,4 +1,4 @@
-local config_dir=${ZDOTDIR:-~}/.zshconfig/$1
+local config_dir=${DOTFILES_DIR:-$HOME/dotfiles}/$1
 
 if [[ ! -d $config_dir ]]; then
   echo "Directory $config_dir does not exist. Home: $HOME"

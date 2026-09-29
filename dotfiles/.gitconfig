@@ -4,7 +4,7 @@
 [core]
 	editor = nano
 	pager = less -FRSX
-	excludesfile = /Users/skarab/.gitignore.global
+	excludesfile = ~/.gitignore
 [init]
 	defaultBranch = main
 [push]

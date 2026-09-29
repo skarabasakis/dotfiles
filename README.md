@@ -1,27 +1,28 @@
 # Dotfiles
 
-## Requirements
+Personal dotfiles for zsh, and some scripts to manage them.
 
-- zsh
-- brew (on macos) or apt (on debian)
-- git
+## Targets
 
-## Dependencies
+- macos (brew)
+- debian / ubuntu (apt)
 
-- [antidote](https://github.com/mattmc3/antidote): zsh plugin manager
-- [1password-cli](https://1password.com/downloads/command-line/): for secrets management
-- [asdf](https://asdf-vm.com/#/): for managing runtime versions
-
-## Install
+## Install on a new machine
 
 ```shell
-git clone skarabasakis/dotfiles $ZDOTDIR
-setup-packages
+git clone skarabasakis/dotfiles
+echo "DOTFILES_DIR=$(pwd)" >> ~/.zshenv
+source ~/.zshenv
+source $DOTFILES_DIR/scripts/link-dotfiles
+source $DOTFILES_DIR/scripts/setup-packages
 ```
 
-Finally restart shell by running: `exec zsh`
-
 # Features
+
+## Manage dotfiles
+
+Add dotfiles to `.zshconfig/dotfiles`.
+Run `link-dotfiles` to link the dotfiles.
 
 ## Manage dependencies
 
@@ -29,14 +30,10 @@ Add dependencies to
 - `.zshconfig/packages/brew/packages` for macos
 - `.zshconfig/packages/apt/packages` for ubuntu
 
-Rerun `setup-packages` to install new dependencies
-
-## Manage environment variables
-
-Add environment variables and secrets from 1password to `.env.template`. Add local overrides to `.env.local`.
-
-Rerun `load-env` to regenerate `.env`.
+Run `setup-packages` to install new dependencies
 
 ## Manage configurations
 
-Instead of adding configurations to `.zshrc`, add them to `.zshconfig/.zshrc`.
+Instead of adding configurations to `.zshrc`, add them to `$DOTFILES_DIR/zshrc`.
+
+Run `load-config` or simply restart the shell to load the configurations.
