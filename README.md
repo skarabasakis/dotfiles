@@ -21,19 +21,19 @@ source $DOTFILES_DIR/scripts/setup-packages.sh
 
 ## Manage dotfiles
 
-Add dotfiles to `.zshconfig/dotfiles`.
-Run `link-dotfiles` to link the dotfiles.
+Add dotfiles under the `dotfiles` directory.
+Run `link-dotfiles` to link the dotfiles to the home directory.
 
 ## Manage dependencies
 
-Add dependencies to
-- `.zshconfig/packages/brew/packages` for macos
-- `.zshconfig/packages/apt/packages` for ubuntu
+Add dependencies to the corresponding package file:
+- `packages/brew/packages` for macos
+- `packages/apt/packages` for ubuntu
 
 Run `setup-packages` to install new dependencies
 
-## Manage configurations
+## Manage zshrc scripts
 
-Instead of adding configurations to `.zshrc`, add them to `$DOTFILES_DIR/zshrc`.
+Add custom zshrc scripts to `$DOTFILES_DIR/zshrc`. The files should be named like `*.zsh` and will be automatically sourced when the shell starts.
 
-Run `load-config` or simply restart the shell to load the configurations.
+Run `load-config` or simply restart the shell to load the configurations in the current shell.
